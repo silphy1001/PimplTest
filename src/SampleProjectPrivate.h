@@ -7,7 +7,7 @@ typedef struct ST_PimplInst_tag{
     EN_Mode eMode;
 }ST_PimplInst;
 
-extern static EN_Mode iGetMode( struct ST_PimplInst_tag *pstData );
-extern void vSetMode( const struct ST_PimplInst_tag *pstData, EN_Mode eMode );
+extern EN_Mode iGetMode( const struct ST_PimplInst_tag *pstData );
+extern void vSetMode( struct ST_PimplInst_tag *pstData, EN_Mode eMode );
 
 #endif /* SAMPLE_PROJECT_PRIV_H__ */
