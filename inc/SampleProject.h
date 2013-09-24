@@ -13,18 +13,24 @@ typedef enum{
     MODE_MAX
 }EN_Mode;
 
+typedef enum{
+	RET_ERR_SYSTEM = -3,
+	RET_ERR_PARAM,
+	RET_ERR_GENERAL,
+	RET_OK,
+	RET_NOTHING_TO_DO
+}EN_RetCode;
+
 struct ST_PimplInst_tag *gpstPmplInst;
 
-typedef EN_Mode (*pTeGetMode)( struct ST_PimplInst_tag *pstData );
+typedef EN_RetCode (*pTeConstruct)( struct ST_PimplInst_tag **pstData );
+typedef EN_RetCode (*pTeDestruct)( struct ST_PimplInst_tag **pstData );
+typedef EN_Mode (*pTeGetMode)( const struct ST_PimplInst_tag *pstData );
 typedef void (*pTvSetMode)( struct ST_PimplInst_tag *pstData, EN_Mode eMode );
 
-extern EN_Mode iGetMode( const struct ST_PimplInst_tag *pstData );
+extern EN_RetCode eInitPimplInstance( struct ST_PimplInst_tag **pstPimpl );
+extern EN_RetCode eDeinitPimplInstance( struct ST_PimplInst_tag **pstPimpl );
+extern EN_Mode eGetMode( const struct ST_PimplInst_tag *pstData );
 extern void vSetMode( struct ST_PimplInst_tag *pstData, EN_Mode eMode );
-
-typedef struct ST_SampleStruct_tag{
-    struct ST_PimplInst_tag *pstPimplInst;
-    pTeGetMode peGetMode;
-    pTvSetMode pvSetMode;
-}ST_SampleStruct;
 
 #endif /* SAMPLE_PROJECT_H__ */

@@ -26,6 +26,6 @@ install : $(TARGET)
 	@echo Complete installing
 
 clean : 
-	@rm -rf $(OBJFILES) bin/$(TARGET) *~ *.d .dep
+	@rm -rf $(OBJFILES) bin/$(TARGET) $(TARGET) *~ *.d .dep
 	@echo Complete cleaning
 
